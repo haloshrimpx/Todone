@@ -360,7 +360,7 @@ fun TodoScreen(
         onDeleteList = {
             viewModel.onDeleteSelectedList(it)
             //由于这个按钮一定是在显示当前列表时删除，所以退回导航栈
-            navController.popBackStack(ScreenNavDestination.Todo.createRoute(), false)
+            navController.navigateUp()
         },
 
         onSelectRemindString = { viewModel.updateSelectedRemindTime(it) },

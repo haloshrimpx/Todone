@@ -114,13 +114,12 @@ class TodoScreenTest {
         composeTestRule.setContent {
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             TodoScreen(
-                drawerState = drawerState,
-                closeDraw = {},
                 listIdToShow = -1,
                 displayType = TodoDisplayType.All,
                 openDraw = {},
                 navController = rememberNavController(),
-                permissionViewModel = viewModel(factory = AppViewModelProvider.factory)
+                permissionViewModel = viewModel(factory = AppViewModelProvider.factory),
+                setGestureEnable = {}
             )
         }
 
@@ -218,12 +217,7 @@ class TodoScreenTest {
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val coroutineScope = rememberCoroutineScope()
             TodoScreen(
-                drawerState = drawerState,
-                closeDraw = {
-                    coroutineScope.launch {
-                        drawerState.close()
-                    }
-                },
+
                 listIdToShow = -1,
                 displayType = TodoDisplayType.All,
                 openDraw = {
@@ -232,8 +226,10 @@ class TodoScreenTest {
                     }
                 },
                 navController = rememberNavController(),
-                permissionViewModel = viewModel(factory = AppViewModelProvider.factory)
-            )
+                permissionViewModel = viewModel(factory = AppViewModelProvider.factory),
+                setGestureEnable = {},
+
+                )
 
             LaunchedEffect(drawerState) {
                 if (drawerState.isClosed)
@@ -292,14 +288,13 @@ class TodoScreenTest {
         composeTestRule.setContent {
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             TodoScreen(
-                drawerState = drawerState,
-                closeDraw = {},
                 listIdToShow = -1,
                 displayType = TodoDisplayType.All,
                 openDraw = {},
                 navController = rememberNavController(),
                 viewModel = todoScreenViewModel,
-                permissionViewModel = viewModel(factory = AppViewModelProvider.factory)
+                permissionViewModel = viewModel(factory = AppViewModelProvider.factory),
+                setGestureEnable = {},
             )
         }
 
