@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- 通知权限 (Android 13+ 必需) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 唤醒锁定权限 (让设备在睡眠状态下也能触发闹钟) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 设备重启后恢复闹钟的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- 可选的振动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- 如果应用运行在 Android 10 以下，添加这个权限 -->
+    <uses-permission
+        android:name="android.permission.USE_EXACT_ALARM"
+        android:maxSdkVersion="29"
+        tools:ignore="MaxSdkVersion" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".TodoListApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TodoList"
+       >
+        <profileable android:shell="true" />
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <receiver
+            android:name=".background.receiver.TodoDelayActionReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <receiver
+            android:name=".background.receiver.TodoDoneActionReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <receiver
+            android:name=".background.receiver.AlarmNotificationReceiver"
+            android:enabled="false"
+            android:exported="false" />
+        <receiver
+            android:name=".background.receiver.DeviceBootReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="notification"
+                    android:scheme="todoapp" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

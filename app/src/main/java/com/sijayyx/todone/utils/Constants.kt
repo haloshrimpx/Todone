@@ -1,0 +1,42 @@
+package com.sijayyx.todone.utils
+
+enum class FunctionResult {
+    Success,
+    Failure
+}
+
+const val UNDO_WAIT_TIME = 5000L //ms
+
+const val DEFAULT_LIST_NAME = "In Progress"
+const val TAG = "MainActivityLog"
+
+const val NONE_STRING = "None"
+const val EMPTY_STRING = ""
+
+//alarm和worker
+const val SCHEDULE_ALARM_HOUR_THRESHOLD = 1L //hour
+const val MINUTES_BEFORE_ALARM = 30L //minute
+
+const val TAG_TODO_ALARM_WORKER = "alarm_todo"
+const val TAG_CHECKLIST_ALARM_WORKER = "alarm_checklist"
+
+const val KEY_ALARM_TYPE = "KEY_ALARM_TYPE"
+const val KEY_ITEM_ID = "KEY_ITEM_ID"
+
+const val KEY_ALARM_HASHCODE = "KEY_ALARM_HASHCODE"
+const val KEY_ALARM_MESSAGE = "KEY_ALARM_MESSAGE"
+const val KEY_ALARM_TIMESTAMP = "KEY_ALARM_TIMESTAMP"
+
+const val KEY_REPEAT_NUM = "KEY_REPEAT_NUM"
+const val KEY_REPEAT_PERIOD = "KEY_REPEAT_PERIOD"
+const val KEY_REPEAT_TIME = "KEY_REPEAT_TIME"
+
+
+const val KEY_WORKER_UUID = "KEY_WORKER_UUID"
+
+const val INTENT_EXTRA_MESSAGE = "INTENT_EXTRA_MESSAGE"
+const val INTENT_EXTRA_ALARM_HASHCODE = "INTENT_EXTRA_ALARM_HASHCODE"
+const val INTENT_EXTRA_ALARM_TYPE = "INTENT_EXTRA_ALARM_TYPE"
+const val INTENT_EXTRA_ITEM_ID = "INTENT_EXTRA_ITEM_ID"
+const val INTENT_EXTRA_ALARM_TIMESTAMP = "INTENT_EXTRA_ALARM_TIMESTAMP"
+const val INTENT_EXTRA_NOTIFICATION_ID = "INTENT_EXTRA_NOTIFICATION_ID"
